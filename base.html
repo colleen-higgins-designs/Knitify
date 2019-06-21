@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock %} Knitify Me</title>
+  {% endblock %}
+</head>
+<body>
+  <header>
+    <h1>Welcome to Knitify</h1>
+    <p>Have an image you'd like to knit? Input it below!</p>
+  </header>
+  <label for="file">upload an image</label>
+  <input type="file" aria-placeholder="upload a .jpg image" name="file">
+  <label for="yarn-type">What weight yarn do you plan on using?</label>
+  <select name="yarn-type">
+    <option>lace</option>
+    <option>super fine</option>
+    <option>fine</option>
+    <option>light</option>
+    <option>medium</option>
+    <option>bulky</option>
+    <option>super bulky</option>
+    <option>jumbo</option>
+  </select>
+  <label for="size">How big would you like this to be (in)?</label>
+  <input type="number" name="size">
+  <button type="submit">Knitify!</button>
+  <!-- output goes here -->
+  <h2>But how do I knit this??</h2>
+  <div id="content">{% block content %}{% endblock %}</div>
+</body>
+</html>
