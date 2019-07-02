@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block title %} - Instructions{% endblock %}
+{% block content %}
+<header>
+    <h1>Knitify Your Photo</h1>
+</header>
+<form action="/" method="POST" enctype=multipart/form-data class="main-content">
+  <div class="form-items">
+  <div class="input-container">
+      Upload an image:
+      <input type="file" aria-placeholder="Upload an image" name="file" id="file" class="input-file" onchange="handleChange(event)">
+      <label for="file" id="file-label" class="input">Choose a file...</label>
+  </div>
+  <div class="input-container">
+    <label for="yarn_type">Yarn weight: </label>
+    <div>
+      <select name="yarn_type" class="input input-select">
+        <option value = "LACE">Lace</option>
+        <option value = "SUPER_FINE">Super Fine</option>
+        <option value = "FINE">Fine</option>
+        <option value = "LIGHT">Light</option>
+        <option value = "MEDIUM">Medium</option>
+        <option value = "BULKY">Bulky</option>
+        <option value = "SUPER_BULKY">Super Bulky</option>
+        <option value = "JUMBO">Jumbo</option>
+      </select>
+      <div class="select-arrow">&#9013;</div>
+  </div>
+  </div>
+  <div class="input-container">
+    <label for="size">Desired width (inches): </label>
+    <input type="number" name="size" class="input" value="1">
+  </div>
+</div>
+<div class="button-container">
+    <button type="submit" class="button">Knitify</button>
+</div>
+</form>
+{% endblock %}
+
+{% block script %}
+  <script>
+    const handleChange = (evt) => {
+      const fileName = evt.target.files[0].name;
+      document.getElementById('file-label').innerText = fileName;
+    }
+  </script>
+{% endblock %}

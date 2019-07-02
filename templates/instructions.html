@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block title %} - Instructions{% endblock %}
+{% block head %}
+    {{super()}}
+    <style>
+        body {
+        --num-rows: {{output|length}};
+        --num-cols: {{output[0]|length}};
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <h1>Your Knitified Pattern:</h1>
+    <div class="input-output-images">
+        {# <div > #}
+            <img src="{{src}}" class="pattern-image"/>
+        {# </div> #}
+        <div class="pattern-image">
+            <table class="grid">
+                {% for row in output %}
+                    <tr>
+                    {% for cell in row %}
+                        <td class="cell" style="background-color: rgb({{cell[0]}}, {{cell[1]}}, {{cell[2]}});"></td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="pattern-info">
+        <div class="pattern-about">
+            <h3>About this pattern: </h3>
+            <p>
+                The pattern below is meant to act as a supplement to your scarf, sweater, or any knitting pattern. The chart below serves as a visual guide for the written instructions and is read from right to left, starting at the bottom row and working upwards.
+            </p>
+            <h3>How to read this pattern: </h3>
+            <p>k = knit</p>
+            <p>n = number of stitches</p>
+            <p>color = color of yarn</p>
+            <p>Example: k4 in red = knit 4 stitches with the red yarn</p>
+        </div>
+        <div class="legend">
+            <h3>Gauge: </h3>
+            <ul>
+                <li>{{gauge * 4}} stitches = 4 inches with recommended needles in stockinette stitch</li>
+            </ul>
+            <h3>Recommended Needle Size: </h3>
+            <ul>
+                <li>{{needle_size.value.title()}} US</li>
+            </ul>
+            <h3>Colors used: </h3>
+            <ul>
+                {% for hex_value, name in colors.items() %}
+                    <li>{{name}}: #{{hex_value}}</li>
+                {% endfor %}
+            </ul>
+            <p class="accent-text">Need help finding these colors? The link below will take you to a site that uses hex values to match available yarn colors</p>
+            <a href="{{color_link}}" target="_blank" class="link">Get these colors!</a>
+        </div>
+    </div>
+    <h2>Color Chart: </h2>
+    <div class="pattern-grid">
+        <table class="grid">
+            {% for row in output %}
+                <tr>
+                {% for cell in row %}
+                    <td class="cell" style="background-color: rgb({{cell[0]}}, {{cell[1]}}, {{cell[2]}});"></td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+    <h2>Instructions: </h2>
+    {% for row in instructions %}
+        {% if loop.index % 2 == 0 %}
+        <p class="accent-row row">Row {{loop.index - 1}}: {{row}}</p>
+        {% elif loop.index > 1 %}
+        <p class="row">Row {{loop.index - 1}}: {{row}}</p>
+        {% else %}
+        <p class="row">{{row}}</p>
+        {% endif %}
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
