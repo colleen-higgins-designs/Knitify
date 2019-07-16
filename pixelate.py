@@ -81,6 +81,5 @@ def pixelate(input_path, yarn_type, width):
       hex_color = "".join(["%0.2X" % i for i in color]).lower()
       used_color_names[hex_color] = color_names[hex_color]
 
-
   return out, used_color_names
 

@@ -43,12 +43,7 @@ def upload_file():
             return render_template('instructions.html', src=url_for('uploaded_file', filename=filename), output=output, instructions=instructions, colors=colors, needle_size=NeedleSizes[yarn_type], color_link=color_link, gauge=int(YarnSizes[yarn_type].value))
     return render_template('form.html')
 
-
 @app.route('/input/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
-
-# @app.route('/instructions')
-# def pattern(filename, output, instructions, colors, needle_size, color_link):
-#     return render_template('instructions.html', src=url_for('uploaded_file', filename=filename), output=output, instructions=instructions, colors=colors, needle_size=needle_size, color_link=color_link)
